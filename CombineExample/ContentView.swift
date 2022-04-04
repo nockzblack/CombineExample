@@ -74,10 +74,19 @@ final class ViewModel: ObservableObject {
 }
 
 
+// View
+
 struct ContentView: View {
+    @StateObject var viewModel = ViewModel()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text(viewModel.time)
+                .padding()
+            List(viewModel.users, id:\.self) { user in
+                Text(user.name)
+            }
+        }
     }
 }
 
